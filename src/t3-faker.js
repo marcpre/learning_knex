@@ -34,11 +34,11 @@ async function main() {
     for (var index = 0; index < dataAmount; index++) {
         try {
             await knex('posts').insert({
-                title: faker.random.word,
-                description: faker.lorem.paragraph,
-                deleted: faker.random.boolean,
-                createdAt: faker.date.recent,
-                updatedAt: faker.date.recent
+                title: faker.random.word(),
+                description: faker.lorem.paragraph(),
+                deleted: faker.random.boolean(),
+                createdAt: faker.date.recent(),
+                updatedAt: faker.date.recent()
             })
         } catch (e) {
             console.log(e)

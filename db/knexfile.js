@@ -5,18 +5,18 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-        user: 'root',
-        host: 'localhost',
-        password: '',
-        database: 'knexdb'
-}
+      user: 'root',
+      host: 'localhost',
+      password: 'root',
+      database: 'knexdb'
+    }
   },
 
   staging: {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
@@ -32,7 +32,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {

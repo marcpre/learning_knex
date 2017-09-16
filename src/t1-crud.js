@@ -1,12 +1,11 @@
 const { exec } = require('child_process');
 var knex = require('knex')({
-    client: 'mysql',
+    client: 'postgresql',
     connection: {
-        user: 'pisco',
-        host: 'localhost',
-        password: '',
-        database: 'c9'
-    },
+        database: 'knexdb',
+        user:     'root',
+        password: 'root'
+      },
     debug: false,
 })
 
@@ -18,6 +17,10 @@ async function main() {
     });
 
     //prepare table
+    knex.del().then(function(){
+        console.log("Table prepared")
+    })
+    
     knex.raw('DELETE FROM easyPosts').then(function() {
         console.log("Table prepared")
     })

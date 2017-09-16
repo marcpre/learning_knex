@@ -3,12 +3,12 @@
 module.exports = {
 
   development: {
-    client: 'mysql',
+    client: 'postgresql',
     connection: {
-        user: 'pisco',
+        user: 'root',
         host: 'localhost',
         password: '',
-        database: 'c9'
+        database: 'knexdb'
 }
   },
 

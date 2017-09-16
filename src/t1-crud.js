@@ -1,42 +1,53 @@
-const path = require('path')
-const fs = require('fs')
-const knex = require('knex')({
+const { exec } = require('child_process');
+var knex = require('knex')({
     client: 'mysql',
     connection: {
         user: 'pisco',
         host: 'localhost',
         password: '',
         database: 'c9'
-    }
+    },
+    debug: false,
 })
 
 async function main() {
 
     //test connection
     knex.raw('select 1+1 as result').then(function() {
-        // there is a valid connection in the pool
+        console.log("Here is a valid connection in the pool")
     });
 
+    //prepare table
+    knex.raw('DELETE FROM easyPosts').then(function() {
+        console.log("Table prepared")
+    })
+
     // drop and create tables
-    let res = await knex.raw(fs.readFileSync(path.join(__dirname, '../sql/t1-basics.sql'), 'utf8'))
+    //easy post table was created
+    exec('knex migrate:latest', (err, stdout, stderr) => {
+        if (err) {
+            console.log(err)
+            return;
+        }
+    });
 
     // insert row
-    await knex('users').insert({ username: 'user1', age: 12 })
-    await knex('users').insert({ username: 'user2', age: 12 })
-    await knex('users').insert({ username: 'user3', age: 14 })
+    await knex('easyPosts').insert({ title: 'First Titel', description: 'Lorem ipsum dolor sit', deleted: false })
+    await knex('easyPosts').insert({ title: 'Second Titel', description: 'Lorem ipsum dolor sit', deleted: false })
+    await knex('easyPosts').insert({ title: 'Third Titel', description: 'My description', deleted: true })
 
     // select one
-    res = await knex('users').where({ age: 12, username: 'user1' }).first()
+    var res = await knex('easyPosts').where({ deleted: true }).first()
     console.log('one', res)
 
     // update
-    await knex('users').where('username', 'user1').update('username', 'user1_u')
+    await knex('easyPosts').where('title', 'First Titel').update('title', 'Titel Updated')
 
     // delete
-    await knex('users').where('username', 'user3').delete()
+    await knex('easyPosts').where('deleted', true).delete()
 
     // select all
-    res = await knex('users')
+    res = await knex('easyPosts') 
     console.log('all', res)
 
     knex.destroy()

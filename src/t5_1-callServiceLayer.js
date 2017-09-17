@@ -4,7 +4,7 @@ const service = require('./t5_0-serviceLayer')
  * #running synchronous and asynch code together?
  */
 
-function main() {
+async function main() {
 
     //prepare data
     //service.prepareData()
@@ -16,18 +16,19 @@ function main() {
 
     //create
     try {
-        const id = service.create("Test post", "Test description")
+        const id = await service.create("Test post", "Test description")
         console.log("Post with " + id + ": " + service.findById(id))
     } catch (err) {
         console.log(err)
     }
 
-    
-
     //get all Posts
     service.getAllPosts().then(function (res) {
         console.log("We have " + res.length + " posts.");
     });
+
+    service.deleteById(id)
+    service.update(id, "Updated Titel", "Updated Description")
 
 }
 

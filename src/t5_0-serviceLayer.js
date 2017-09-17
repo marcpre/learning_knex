@@ -60,35 +60,26 @@ function create(title, description) {
  * delete a post by a certain id
  */
 function deleteById(id) {
-    try {
-        knex('posts').select().where('id', id).del()
-    } catch (e) {
-        console.log(e)
-    }
+    return knex('posts').select().where('id', id).del().catch((err) => console.log(err));
 }
 
 /**
  * update a post by id
  */
-function update(id) {
-    try {
-        knex('posts').select().where('id', id).update()
-    } catch (e) {
-        console.log(e)
-    }
+function update(id, title, description) {
+    knex('posts').select().where('id', id).update({
+        title: title, 
+        description: description
+    }).catch((err) => console.log(err));
 }
 
 /**
  * find a post by id
  */
 function findById(id) {
-    try {
-        knex('posts').select().where('id', id).first().then(data => {
-            return data
-        })
-    } catch (e) {
-        console.log(e)
-    }
+    knex('posts').select().where('id', id).first().then(data => {
+        return data
+    }).catch((err) => console.log(err));
 }
 
 module.exports = {

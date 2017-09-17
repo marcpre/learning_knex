@@ -41,19 +41,19 @@ function getAllPosts() {
  */
 function create(title, description) {
     console.log("Titel: " + title + " Description: " + description)
-    try {
-        knex('posts').insert({
+    return knex('posts')
+        .insert({
             title: title,
             description: description,
             deleted: true,
             createdAt: new Date(),
             updatedAt: new Date()
-        }, 'id').then(id => {
-            return id
+        }, 'id')
+        .then(id => {
+            console.log("Inserted post with id " + id)
+            return id;
         })
-    } catch (e) {
-        return console.log(e)
-    }
+        .catch((err) => console.log(err));
 }
 
 /**

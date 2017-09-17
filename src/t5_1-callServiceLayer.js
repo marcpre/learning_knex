@@ -15,17 +15,17 @@ function main() {
     })
 
     //create
-    service.create("Test post", "Test description").then(function (res) {
-        console.log(res)
-    })
+    try {
+    const id = service.create("Test post", "Test description")
     console.log("Post with " + id + ": " + service.findById(id))
+} catch(err) {
+    console.log(err)
+}
 
     //get all Posts
     service.getAllPosts().then(function (res) {
         console.log("We have " + res.length + " posts.");
     });
-    console.log("Result " + res)
-
 
 }
 

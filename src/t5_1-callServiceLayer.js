@@ -16,11 +16,13 @@ function main() {
 
     //create
     try {
-    const id = service.create("Test post", "Test description")
-    console.log("Post with " + id + ": " + service.findById(id))
-} catch(err) {
-    console.log(err)
-}
+        const id = service.create("Test post", "Test description")
+        console.log("Post with " + id + ": " + service.findById(id))
+    } catch (err) {
+        console.log(err)
+    }
+
+    
 
     //get all Posts
     service.getAllPosts().then(function (res) {

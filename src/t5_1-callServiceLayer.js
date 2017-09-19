@@ -16,16 +16,41 @@ async function main() {
 
     //create
     try {
-        const id = await service.create("Test post", "Test description")
-        console.log("Post with " + id + ": " + service.findById(id))
-    } catch (err) {
+        /**
+         * Create Post
+         **/
+        var id = await service.create("Test post", "Test description")
+        console.log(typeof(parseInt(id)))
+
+        /**
+         * Get post by Id 
+         **/
+        const postById = await service.findById(parseInt(id))
+        console.log("Post with " + id + ": " + JSON.stringify(postById))
+
+        /**
+         * Get post by Id 
+         **/
+        const all = await service.getAllPosts()
+        console.log("All " + JSON.stringify(all))
+        console.log("##########################")
+
+        /**
+         * Update Post
+         **/
+        const updateId = service.update(id, "Updated Titel", "Updated Description")
+        console.log("Post with " + updateId + " got updated: " + JSON.stringify(updateId))
+
+        /**
+         * Delete Post
+         **/
+        const deletedPost = await service.deleteById(parseInt(id))
+        console.log("Post with " + deletedPost + " got deleted: " + JSON.stringify(deletedPost))
+
+    }
+    catch (err) {
         console.log(err)
     }
-
-    //get all Posts
-    service.getAllPosts().then(function (res) {
-        console.log("We have " + res.length + " posts.");
-    });
 
     service.deleteById(id)
     service.update(id, "Updated Titel", "Updated Description")

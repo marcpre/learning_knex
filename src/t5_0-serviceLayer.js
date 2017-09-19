@@ -32,7 +32,7 @@ function prepareData() {
 function getAllPosts() {
     return knex('posts').select().then(data => {
         return data
-    })
+    }).catch((err) => console.log(err));
 }
 
 
@@ -67,19 +67,30 @@ function deleteById(id) {
  * update a post by id
  */
 function update(id, title, description) {
-    knex('posts').select().where('id', id).update({
-        title: title, 
+    return knex('posts').select().where('id', id).update({
+        title: title,
         description: description
-    }).catch((err) => console.log(err));
+        
+    }, 'id')
+        .then(id => {
+            console.log("Updated post with id " + id)
+            return id;
+        })
+        .catch((err) => console.log(err));
 }
 
 /**
  * find a post by id
  */
 function findById(id) {
-    knex('posts').select().where('id', id).first().then(data => {
+    return knex('posts').select().where('id', id).first().then(data => {
         return data
-    }).catch((err) => console.log(err));
+    }, 'id')
+        .then(id => {
+            console.log("Deleted post with id " + id)
+            return id;
+        })
+        .catch((err) => console.log(err));
 }
 
 module.exports = {

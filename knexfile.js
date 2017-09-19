@@ -2,16 +2,26 @@
 
 module.exports = {
 
+/*
   development: {
     client: 'postgresql',
     connection: {
       database: 'knexdb',
-      user:     'root',
+      user: 'root',
       password: 'root'
     },
     pool: {
       min: 2,
       max: 10
+    },
+  }, */
+
+  development: {
+    client: 'mysql',
+    connection: {
+      database: 'knexdb',
+      user: 'pisco',
+      password: ''
     },
   },
 
@@ -19,7 +29,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
@@ -35,7 +45,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {

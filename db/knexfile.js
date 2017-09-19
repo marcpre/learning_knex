@@ -1,7 +1,7 @@
 // Update with your config settings.
 
 module.exports = {
-
+/*
   development: {
     client: 'postgresql',
     connection: {
@@ -11,6 +11,18 @@ module.exports = {
       database: 'knexdb'
     }
   },
+*/  
+
+  development: {
+    client: 'mysql',
+    connection: {
+      user: 'pisco',
+      host: 'localhost',
+      password: '',
+      database: 'knexdb'
+    }
+  },
+
 
   staging: {
     client: 'postgresql',

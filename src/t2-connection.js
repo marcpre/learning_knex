@@ -20,7 +20,6 @@ function main() {
             console.log(res)
         }
     })
-
 }
 
 main()//.then().catch(err => console.error(err))

@@ -2,7 +2,7 @@
 
 module.exports = {
 
-/*
+
   development: {
     client: 'postgresql',
     connection: {
@@ -14,8 +14,8 @@ module.exports = {
       min: 2,
       max: 10
     },
-  }, */
-
+  }, 
+/*
   development: {
     client: 'mysql',
     connection: {
@@ -24,7 +24,7 @@ module.exports = {
       password: ''
     },
   },
-
+*/
   staging: {
     client: 'postgresql',
     connection: {

@@ -56,4 +56,5 @@ async function main() {
     knex.destroy()
 }
 
+//TODO then has not to be used
 main().then().catch(err => console.error(err))

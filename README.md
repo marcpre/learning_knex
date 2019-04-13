@@ -11,3 +11,7 @@ Knex Cheatsheet: [https://devhints.io/knex](https://devhints.io/knex)
 ## Migrations
 
 `npx knex migrate:make migration_name`
+
+## Create seed
+
+`npx knex seed:make seed_name`
